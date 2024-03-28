@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.set(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 let posts = [
     {
@@ -22,11 +22,11 @@ let posts = [
     {
         username : "Harpic",
         content : "We sell Toilet cleaner"
-    }
-]
+    },
+];
 
-app.get("/", (req, res) => {
-    res.send("C:\Learning_Express\Mini-Project\views\index.ejs", {posts});
+app.get("/posts", (req, res) => {
+    res.render("index.ejs", {posts});
 });
 
 app.listen(port, () => {

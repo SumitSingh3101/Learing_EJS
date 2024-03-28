@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaua Posts</title>
+    <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
     <h1>All Posts</h1>
     <% 
     for(post of posts){ %>
-        <div>
-            <h3>@<%=post.username%></h3>
-            <h4><%=post.content%></h4>
+        <div class="post">
+            <h3 class="user">@<%=post.username%></h3>
+            <h4 class="content"><%=post.content%></h4>
         </div>
     <%}%>
 </body>
