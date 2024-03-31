@@ -11,9 +11,15 @@
     <% 
     for(post of posts){ %>
         <div class="post">
+            <br>
             <h3 class="user">@<%=post.username%></h3>
             <h4 class="content"><%=post.content%></h4>
+            <br>
+            <a href="http://localhost:8080/posts/<%=post.id%>">Read in detail. </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+            <a href="http://localhost:8080/posts/<%=post.id%>/edit">Edit Post</a>
+            <br>
         </div>
+        <br>
     <%}%>
 
     <br><br><hr><br>
