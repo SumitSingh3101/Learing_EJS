@@ -53,7 +53,7 @@ app.get("/posts/:id", (req, res) => {
     res.render("show.ejs", {post});
 });
 
-app.patch("/poosts/:id", (req, res) => {
+app.patch("/posts/:id", (req, res) => {
     let {id} = req.params;
     let newContent = req.body.content;
     let post = posts.find((p) => id === p.id);
@@ -77,4 +77,3 @@ app.delete("/posts/:id", (req, res) => {
 app.listen(port, () => {
     console.log(`listening to port : ${port}`);
 });
-
