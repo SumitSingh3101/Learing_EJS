@@ -1,1 +1,3 @@
 I am learning Sql
+
+I learned the basics and created my first table.
