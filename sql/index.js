@@ -1,14 +1,11 @@
 const { faker } = require("@faker-js/faker");
 
-let createRandomUser = () => {
+let getRandomUser = () => {
     return{
         userID: faker.datatype.uuid(),
         username: faker.internet.userName(),
         email: faker.internet.email(),
-        avatar: faker.image.avatar(),
-        password: faker.internet.password(),
-        birthdate: faker.data.birthdate(),
-        registeredAt: faker.date.past(),
+        password: faker.internet.password()
     };
 };
 
