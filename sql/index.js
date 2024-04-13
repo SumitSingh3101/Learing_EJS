@@ -11,12 +11,12 @@ const connection = mysql.createConnection({
 });
 
 let getRandomUser = () => {
-    return{
-        userID: faker.datatype.uuid(),
-        username: faker.internet.userName(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
-    };
+    return[
+        faker.datatype.uuid(),
+        faker.internet.userName(),
+        faker.internet.email(),
+        faker.internet.password()
+    ];
 };
 
 //Inserting New Data
