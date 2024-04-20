@@ -3,6 +3,7 @@ const mysql = require("mysql2");
 const express = require("express");
 const app = express();
 const path = require("path");
+const { v4: uuidv4 } = require('uuid');
 const methodOverride = require("method-override");
 
 app.use(methodOverride("_method"));
@@ -21,7 +22,7 @@ const connection = mysql.createConnection({
 
 let getRandomUser = () => {
     return[
-        faker.datatype.uuid(),
+        faker.string.uuid(),
         faker.internet.userName(),
         faker.internet.email(),
         faker.internet.password()
@@ -87,10 +88,10 @@ app.patch("/user/:id", (req, res) => {
             if(formPass != user.password){
                 res.send("WRONG password");
             }else{
-                let q2 = `UPDATE user SET username=${newUsername} WHERE id='${id}'`;
+                let q2 = `UPDATE user SET username='${newUsername}' WHERE id='${id}'`;
                 connection.query(q2, (err, result) => {
                     if(err) throw err;
-                    res.send(result);
+                    res.redirect("/user");
                 });
             }
 
@@ -101,6 +102,34 @@ app.patch("/user/:id", (req, res) => {
     }
 });
 
+app.get("/user/add", (req, res) =>{
+    res.render("new.ejs");
+});
+
+app.post("/user/add/new", (req, res) => {
+    let {username, email, password, againPassword} = req.body;
+    let id = uuidv4();
+    let q = `INSERT INTO user VALUES('${id}','${email}','${username}','${password}')`;
+    console.log(password,againPassword);
+    try{
+        connection.query(q,(err, result) => {
+            if (err) throw err;
+            let user = result[0];
+            if(password != againPassword){
+                res.send("WRONG password repeted");
+            }else{
+                connection.query(q, (err, result) => {
+                    if(err) throw err;
+                    res.redirect("/user");
+                });
+            }
+
+        });
+    }catch(err){
+        console.log(err);
+        res.send("some error in DB")
+    }
+});
 
 app.listen("8080", () => {
     console.log("server is listening to port 8080");
