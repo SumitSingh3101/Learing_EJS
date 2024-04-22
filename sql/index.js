@@ -119,16 +119,59 @@ app.post("/user/add/new", (req, res) => {
                 res.send("WRONG password repeted");
             }else{
                 connection.query(q, (err, result) => {
-                    if(err) throw err;
+                    // if(err) throw err;
                     res.redirect("/user");
                 });
             }
-
         });
     }catch(err){
         console.log(err);
         res.send("some error in DB")
     }
+});
+
+app.get("/user/:id/delete",(req, res) => {
+    let {id} = req.params;
+    let q = `SELECT * FROM user WHERE id = '${id}'`;
+
+    try{
+        connection.query(q,(err, result) => {
+            if (err) throw err;
+            let user = result[0];
+            res.render("delete.ejs", {user}); 
+        });
+    }catch(err){
+        console.log(err);
+        res.send("some error in DB")
+    }
+})
+
+app.delete("/user/:id/", (req, res) => {
+    let {id} = req.params;
+    let {email, password} = req.body;
+    let q = `SELECT * FROM user WHERE id = '${id}'`;
+
+    try{
+        connection.query(q,(err, result) => {
+            if (err) throw err;
+            let user = result[0];
+            console.log(email, password);
+            console.log(user.email, user.password);
+                if(email != user.email || password != user.password){
+                    res.send("WRONG details entered");
+                }else{
+                    q = `DELETE FROM user WHERE id = '${id}'`;
+                    connection.query(q, (err, result) => {
+                        if(err) throw err;
+                        res.redirect("/user");
+                    });
+                }
+        });
+    }catch(err){
+        console.log(err);
+        res.send("some error in DB")
+    }
+
 });
 
 app.listen("8080", () => {

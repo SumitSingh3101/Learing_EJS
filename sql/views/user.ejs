@@ -21,6 +21,8 @@
             <th>Id</th>
             <th>Email</th>
             <th>Username</th>
+            <th>Edit User</th>
+            <th>Delete USer</th>
         </tr>
         <% for(user of users){ %>
             <tr>
@@ -29,6 +31,9 @@
                 <td><%= user.username %></td>
                 <td><form method="GET" action="/user/<%=user.id%>/edit">
                     <button>Edit username</button>
+                </form></td>
+                <td><form method="GET" action="/user/<%=user.id%>/delete">
+                    <button>Delete username</button>
                 </form></td>
             </tr>
         <%}%>
