@@ -183,7 +183,6 @@ app.listen("8080", () => {
 
 
 
-
 //Inserting New Data
 // let q = "INSERT INTO USER(id, username, email, password) values ?";
 
