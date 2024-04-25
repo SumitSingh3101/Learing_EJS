@@ -1,1 +1,3 @@
 Day1) installed mongo
+
+Day2) Fixed the issue i was facing while using Mongo CLI
