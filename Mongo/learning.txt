@@ -3,3 +3,5 @@ Day1) installed mongo
 Day2) Fixed the issue i was facing while using Mongo CLI
 
 Day3) Learned about the mongo shell
+
+Day4) Learned how to sote data
