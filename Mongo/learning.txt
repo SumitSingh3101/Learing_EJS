@@ -9,3 +9,6 @@ Day4) Learned how to sote data
 Day5) Learned to insert in DB
 
 Day6) Learned to find DataBase
+
+Day7) Learned Query Operators
+
