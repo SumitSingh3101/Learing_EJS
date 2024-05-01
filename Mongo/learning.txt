@@ -12,3 +12,4 @@ Day6) Learned to find DataBase
 
 Day7) Learned Query Operators
 
+Day8) Learnd to update in DB
